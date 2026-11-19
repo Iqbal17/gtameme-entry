@@ -33,12 +33,24 @@ for (const name of readdirSync(OUTPUT_DIR)) {
   rmSync(join(OUTPUT_DIR, name), { recursive: true, force: true });
 }
 
+// Deliver one repository file into the output directory. A required
+// file that cannot be copied fails the run with a clear message; an
+// optional one (POST.json before the post exists) is skipped quietly.
+function deliver(name: string, required: boolean): void {
+  const from = join(BOT_DIR, name);
+  if (!existsSync(from)) {
+    if (required) {
+      console.error(`${name} is missing from ${BOT_DIR}`);
+      process.exit(1);
+    }
+    return;
+  }
+  copyFileSync(from, join(OUTPUT_DIR, name));
+}
+
 // The meme that the post carries; the program ships it and reproduces
 // it into the output directory unchanged.
-copyFileSync(join(BOT_DIR, 'meme.png'), join(OUTPUT_DIR, 'meme.png'));
+deliver('meme.png', true);
 
 // The post's address, once the entrant has filled POST.json in.
-const postFile = join(BOT_DIR, 'POST.json');
-if (existsSync(postFile)) {
-  copyFileSync(postFile, join(OUTPUT_DIR, 'POST.json'));
-}
+deliver('POST.json', false);
