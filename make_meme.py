@@ -190,10 +190,10 @@ for y in range(0, 700):
         c = tuple(int(mid[i] + (low[i] - mid[i]) * t) for i in range(3))
     rect(0, y, W, y + 1, c)
 
-# retro sun with stripe cuts
-circle(512, 690, 170, (255, 205, 80))
-for i, sy in enumerate((640, 668, 692)):
-    rect(300, sy, 724, sy + 6 + i * 3, (255, 150, 80))
+# retro sun, low on the horizon behind the bench
+circle(512, 760, 140, (255, 205, 80))
+for i, sy in enumerate((716, 738, 756)):
+    rect(372, sy, 652, sy + 5 + i * 2, (255, 150, 80))
 
 # sea and sand
 rect(0, 700, W, 792, (18, 130, 160))
@@ -203,18 +203,18 @@ rect(0, 792, W, 876, (243, 214, 150))
 
 # palm trees, left and right silhouettes
 def palm(bx, by, flip=1):
-    for s in range(0, 130, 6):
-        x = bx + flip * int(22 * math.sin(s / 130 * 1.2))
+    for s in range(0, 176, 6):
+        x = bx + flip * int(26 * math.sin(s / 176 * 1.2))
         circle(x, by - s, 11, (38, 90, 52))
-    tx = bx + flip * int(22 * math.sin(1.2))
-    ty = by - 130
+    tx = bx + flip * int(26 * math.sin(1.2))
+    ty = by - 176
     for ang in (-160, -115, -70, -25, 15):
         a = math.radians(ang if flip > 0 else 180 - ang)
         line(tx, ty, tx + int(105 * math.cos(a)), ty + int(60 * math.sin(a)) + 26,
              (38, 90, 52), 9)
 
-palm(96, 800, 1)
-palm(936, 806, -1)
+palm(96, 856, 1)
+palm(936, 862, -1)
 
 # the bus stop sign that has said SOON for thirteen years
 line(150, 300, 150, 660, (60, 60, 70), 10)
@@ -223,8 +223,8 @@ rect(52, 196, 252, 210, BLACK)
 rect(52, 292, 252, 306, BLACK)
 rect(52, 196, 66, 306, BLACK)
 rect(238, 196, 252, 306, BLACK)
-draw_text(76, 222, "GTA 6", 6, BLACK)
-draw_text(66, 272, "ARRIVING: SOON", 2, (200, 30, 40))
+draw_text(80, 226, "GTA 6", 5, BLACK)
+draw_text(64, 274, "ARRIVING: SOON", 2, (200, 30, 40))
 
 # bench
 rect(292, 636, 772, 662, (146, 96, 52))
@@ -236,11 +236,11 @@ rect(292, 592, 772, 612, (120, 78, 42))
 
 # the patient fan: grey hair now, cane leaning by his knee
 circle(404, 512, 40, (243, 194, 144))
-circle(404, 482, 34, (196, 196, 200))          # grey hair on top
-rect(372, 470, 436, 492, (243, 194, 144))      # keep the face clear
-circle(392, 516, 4, BLACK)
-circle(420, 516, 4, BLACK)
-line(392, 540, 420, 540, (150, 90, 70), 4)     # flat, patient mouth
+circle(404, 480, 31, (196, 196, 200))          # grey hair on top
+circle(404, 524, 30, (243, 194, 144))          # face below the hairline
+circle(394, 522, 4, BLACK)
+circle(418, 522, 4, BLACK)
+line(394, 546, 418, 546, (150, 90, 70), 4)     # flat, patient mouth
 rect(366, 552, 446, 640, (38, 150, 160))       # shirt
 line(380, 580, 330, 626, (38, 150, 160), 16)   # arm resting down
 rect(366, 640, 520, 676, (70, 70, 110))        # trousers, seated
@@ -250,8 +250,8 @@ line(560, 560, 596, 716, (120, 84, 40), 7)     # the cane
 circle(560, 556, 9, (120, 84, 40))
 
 # scattered calendar pages of the wait
-for (cx0, cy0, yr) in ((250, 800, "2013"), (452, 822, "2018"),
-                       (700, 806, "2023"), (852, 828, "2026")):
+for (cx0, cy0, yr) in ((250, 798, "2013"), (452, 814, "2018"),
+                       (700, 800, "2023"), (852, 814, "2026")):
     rect(cx0, cy0, cx0 + 92, cy0 + 56, WHITE)
     rect(cx0, cy0, cx0 + 92, cy0 + 14, (200, 30, 40))
     draw_text(cx0 + 12, cy0 + 22, yr, 3, BLACK)
@@ -281,23 +281,23 @@ circle(726, 566, 31, MAGENTA)
 star(726, 566, 17, WHITE)                      # white star on the coin
 
 # speech bubble from the ghost
-rect(566, 218, 986, 348, WHITE)
-circle(566, 218, 18, WHITE)
-circle(986, 218, 18, WHITE)
-circle(566, 348, 18, WHITE)
-circle(986, 348, 18, WHITE)
-poly([(640, 348), (700, 348), (664, 402)], WHITE)
-draw_text(596, 236, "I GOT PAID ON", 4, BLACK)
-draw_text(596, 272, "MAKE.FUN WHILE", 4, MAGENTA)
-draw_text(596, 308, "WE WAITED!", 4, BLACK)
+rect(580, 232, 972, 334, WHITE)
+circle(580, 232, 14, WHITE)
+circle(972, 232, 14, WHITE)
+circle(580, 334, 14, WHITE)
+circle(972, 334, 14, WHITE)
+poly([(640, 334), (700, 334), (664, 398)], WHITE)
+draw_text(600, 240, "I GOT PAID ON", 4, BLACK)
+draw_text(600, 274, "MAKE.FUN WHILE", 4, MAGENTA)
+draw_text(600, 306, "WE WAITED!", 4, BLACK)
 
 # caption bars
-rect(0, 0, W, 128, BLACK)
-text_center(26, "WAITING FOR GTA 6", 9, WHITE)
-text_center(88, "SINCE 2013...", 4, YELLOW)
+rect(0, 0, W, 150, BLACK)
+text_center(24, "WAITING FOR GTA 6", 8, WHITE)
+text_center(102, "SINCE 2013...", 4, YELLOW)
 rect(0, 876, W, H, BLACK)
-text_center(898, "13 YEARS LATER: IT'S OUT!", 7, WHITE)
-text_center(962, "WE'RE 31 NOW. BEST DAY EVER.", 5, YELLOW)
+text_center(894, "13 YEARS LATER: IT'S OUT!", 6, WHITE)
+text_center(956, "WE'RE 31 NOW. BEST DAY EVER.", 5, YELLOW)
 
 # ---------------------------------------------------------------- png out
 
